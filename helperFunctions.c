@@ -60,7 +60,7 @@ void _exitShell(char **tokens, char *line)
 
 	if (tokens[1] != NULL)
 	{
-		status = 10;
+		status = atoi(tokens[1]);
 		if (status >= 0)
 		{
 			free(line);

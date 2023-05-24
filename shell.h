@@ -35,4 +35,5 @@ char *var_build(char *var_name, char *var_value);
 int _unsetenv(char *var_name);
 char *_strdup(char *str);
 void ctrlc(int signum);
+int c_atoi(char *s);
 #endif

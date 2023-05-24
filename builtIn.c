@@ -60,7 +60,7 @@ int _execBuiltIn(char **tokens)
 			return (0);
 		}
 		/*else print a ERR message*/
-		printf("Usage: setenv var_name var_value\n");
+		perror("Usage: setenv var_name var_value\n");
 		return (0);
 	}
 	if (_strcmp(*tokens, "unsetenv") == 0)
@@ -72,7 +72,7 @@ int _execBuiltIn(char **tokens)
 			return (0);
 		}
 		/*else an error msg*/
-		printf("Usage: unsetenv VAR_NAME\n");
+		perror("Usage: unsetenv VAR_NAME\n");
 		return (0);
 	}
 	return (1);
