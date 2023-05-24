@@ -7,6 +7,10 @@
 #include <sys/types.h>
 #include <sys/wait.h>
 #include <sys/stat.h>
+#include <wait.h>
+#include <fcntl.h>
+#include <dirent.h>
+#include <signal.h>
 
 extern char **environ;
 void promptUser(void);
@@ -30,4 +34,5 @@ int _setenv(char *var_name, char *var_value);
 char *var_build(char *var_name, char *var_value);
 int _unsetenv(char *var_name);
 char *_strdup(char *str);
+void ctrlc(int signum);
 #endif
