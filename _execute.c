@@ -1,6 +1,7 @@
 #include "shell.h"
+
 /**
- * _execute - custom execve that executes a file.
+ * _execute - Executes a file.
  * @tokens: Split string into tokens from stdin.
  * @args: Program arguments.
  * Return: 0 if success. otherwise - 1.
@@ -11,21 +12,20 @@ int _execute(char **tokens, char *args)
 	pid_t child_pid;
 	int status;
 	char *path;
-
-	/* check if the first element is a built in */
+	/* check if first token is a built in */
 	if (_isBuiltIn(*tokens) == 0)
 	{
-		status = _execBuiltIn(tokens);
+		status = _executeBuiltIn(tokens);
 		return (status);
 	}
-	/* if the user enter something like ls, pwd...*/
-	path = pathBuilder(tokens);
+	/* if path wasn't entered e.g ls, pwd, etc */
+	path = path_builder(tokens);
 	if (path != NULL)
 	{
-		status = _execPath(tokens, path, args);
+		status = execute2(tokens, path, args);
 		return (status);
 	}
-	/* handle commands like /bin/ls */
+	/* if path was entered e.g /bin/ls */
 	child_pid = fork();
 	if (child_pid == -1)
 	{
@@ -34,6 +34,7 @@ int _execute(char **tokens, char *args)
 	}
 	if (child_pid == 0)
 	{
+
 		if (execve(tokens[0], tokens, NULL) == -1)
 		{
 			err1 = _strcat(*tokens, ": No such file or directory\n");

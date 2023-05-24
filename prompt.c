@@ -1,9 +1,9 @@
 #include "shell.h"
 /**
- * promptUser - Print prompt to the user.
+ * prompt - Print prompt to the user.
  * Return: Void.
  */
-void promptUser(void)
+void prompt(void)
 {
 	if (isatty(STDIN_FILENO))
 	{

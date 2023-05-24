@@ -1,10 +1,12 @@
 #include "shell.h"
+
 /**
- * main - The ntry to main Simple Shell program.
+ * main - Entry to Simple Shell program.
  * @argc: Number of arguments.
  * @argv: Pointer to array of arguments.
  * Return: Always 0 if success else 1.
  */
+
 int main(int argc, char *argv[])
 {
 	char *line;
@@ -17,7 +19,8 @@ int main(int argc, char *argv[])
 	Status = 0;
 	while (Status == 0)
 	{
-		promptUser();
+		prompt();
+
 		line = read_line();
 		if (_strcmp(line, "\n") == 0)
 		{
@@ -25,16 +28,17 @@ int main(int argc, char *argv[])
 			free(line);
 			continue;
 		}
-		tokens = _split(line);
+		tokens = _strtotokens(line);
 		if (tokens[0] == NULL)
 		{
 			free(tokens);
 			free(line);
 			continue;
 		}
+
 		if (_strcmp(tokens[0], "exit") == 0)
 		{
-			_exitShell(tokens, line);
+			_exitSimpleShell(tokens, line);
 		}
 		else
 		{

@@ -1,50 +1,22 @@
 #include "shell.h"
+
 /**
- * _strlen - Returns length of a string.
- * @s: Pointer to string.
- * Return: Length of s.
+ * _putchar - Writes the character c to stdout.
+ * @c: The character to print.
+ * Return: On success - 1.
  */
-int _strlen(char *s)
+int _putchar(char c)
 {
-	int index;
-
-	index = 0;
-	while (s[index] != '\0')
-	{
-		index++;
-	}
-	return (index);
+	return (write(1, &c, 1));
 }
-/**
- * _strcat - Concatenates two strings.
- * @dest: Pointer to string to be conatenated upon.
- * @src: Pointer to string to append to dest.
- * Return: Pointer to dest.
- */
-char *_strcat(char *dest, char *src)
-{
-	char *destAddress;
-	int destLen;
 
-	destAddress = dest;
-	destLen = _strlen(dest);
-	destAddress = destAddress + destLen;
-	while (*src != '\0')
-	{
-		*destAddress = *src;
-		src++;
-		destAddress++;
-	}
-	*destAddress = '\0';
-
-	return (dest);
-}
 /**
  * _strcmp - Compares two strings.
  * @s1: Pointer to First string.
  * @s2: Pointer to Second string.
  * Return: 0 if they are equal, Otherwise - positive value.
  */
+
 int _strcmp(char *s1, char *s2)
 {
 	int i = 0;
@@ -76,4 +48,27 @@ int c_atoi(char *s)
 		i++;
 	}
 	return (num);
+}
+
+
+/**
+ * _strcpy - Copies the string pointed to by src,
+ * including the terminating null byte (\0),
+ * to the buffer pointed to by dest.
+ * @dest: Copy source to this buffer.
+ * @src: This is the source to copy.
+ * Return: Copy of original source.
+ */
+
+char *_strcpy(char *dest, char *src)
+{
+	int i, len;
+
+	for (len = 0; src[len] != '\0'; len++)
+		;
+
+	for (i = 0; i <= len; i++)
+		dest[i] = src[i];
+
+	return (dest);
 }

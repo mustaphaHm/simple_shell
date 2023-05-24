@@ -1,5 +1,6 @@
 #ifndef SHELL_H
 #define SHELL_H
+
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
@@ -13,27 +14,32 @@
 #include <signal.h>
 
 extern char **environ;
-void promptUser(void);
+void _puts(char *str);
+void prompt(void);
 char *read_line(void);
-int _strcmp(char *s1, char *s2);
-unsigned int _checkSpaces(char *s);
-char **_split(char *str);
-void _exitShell(char **tokens, char *line);
-int _execute(char **tokens, char *args);
 int _strlen(char *s);
 char *_strcat(char *dest, char *src);
-int fileExists(char *s);
-int _putchar(char c);
-char *pathBuilder(char **tokens);
-int _execPath(char **tokens, char *path, char *args);
+char **_strtotokens(char *str);
+int _execute(char **tokens, char *args);
 void _printenv(void);
+int _putchar(char c);
+int _strcmp(char *s1, char *s2);
+int _executeBuiltIn(char **tokens);
 int _isBuiltIn(char *str);
-int _execBuiltIn(char **tokens);
-void _puts(char *str);
-int _setenv(char *var_name, char *var_value);
+int c_atoi(char *s);
+void _kill(char *lineptr, char *tmp, char **tok);
+void _exitSimpleShell(char **tokens, char *line);
+void ctrlc(int signum);
+int is_delim(char c, const char *delim);
+char *_strtok(char *src, const char *delim);
+char *_strcpy(char *dest, char *src);
+ssize_t get_line(char **str);
+int handle_path(char **tokens);
+int if_file_exists(char *s);
+char *path_builder(char **tokens);
+int execute2(char **tokens, char *path, char *args);
 char *var_build(char *var_name, char *var_value);
+int _setenv(char *var_name, char *var_value);
 int _unsetenv(char *var_name);
 char *_strdup(char *str);
-void ctrlc(int signum);
-int c_atoi(char *s);
 #endif
