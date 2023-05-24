@@ -10,7 +10,21 @@ int _execute(char **tokens, char *args)
 	char *err1, *err2, *err3;
 	pid_t child_pid;
 	int status;
+	char *path;
 
+	/* check if the first element is a built in */
+	if (_isBuiltIn(*tokens) == 0)
+	{
+		status = _execBuiltIn(tokens);
+		return (status);
+	}
+	/* if the user enter something like ls, pwd...*/
+	path = pathBuilder(tokens);
+	if (path != NULL)
+	{
+		status = _execPath(tokens, path, args);
+		return (status);
+	}
 	/* handle commands like /bin/ls */
 	child_pid = fork();
 	if (child_pid == -1)
