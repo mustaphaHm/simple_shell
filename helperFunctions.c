@@ -48,7 +48,7 @@ char **_split(char *str)
 	return (tokens);
 }
 /**
- * _exitSimpleShell - Exits the shell
+ * _exitShell - Exits the shell
  * and frees memory.
  * @tokens: Double pointer to words split from line.
  * @line: Pointer to string got using getLine().
