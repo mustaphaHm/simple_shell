@@ -42,5 +42,5 @@ int main(int argc, char *argv[])
 		free(line);
 		free(tokens);
 	}
-	return (0);
+	return (Status);
 }
